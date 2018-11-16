@@ -4,7 +4,7 @@
 
 A tool for making strong, memorable passphrases.
 
-[Download for Google Chrome](https://chrome.google.com/webstore/detail/dicephrase/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+[Install in Google Chrome](https://chrome.google.com/webstore/detail/dicephrase/hlcidibhelknhpnimiiogjclajfopdag)
 
 
 ## About DicePhrase
