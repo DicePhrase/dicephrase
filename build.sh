@@ -20,7 +20,7 @@ fi
 
 # List files that contain version numbers.
 echo "These files may contain version numbers that need to be manually updated for a new release:"
-grep -irlE --exclude="jquery*" --exclude="*.svg" --exclude-dir="fw" "version.+[0-9]" ./ || fail
+grep -irlE --exclude="*.svg" --exclude-dir="fw" --exclude-dir=".git" "version.+[0-9]" ./ || fail
 
 echo "The build completed successfully."
 exit 0
