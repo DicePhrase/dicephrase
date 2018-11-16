@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>DicePhrase</title>
+		<link rel="stylesheet" href="fw/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="fw/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/stylesheet.css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="pull-right">
+								<a href="doc/_site/help.html" target="_blank" class="help-button h4">
+									<span class="fa fa-question-circle" aria-label="Help" title="Help" role="button"></span>
+								</a>
+							</div>
+							<h4 class="no-top-space no-bottom-space"><img src="img/icon-white-64.png" class="logo-icon"> DicePhrase</h4>
+						</div>
+						<div class="panel-body">
+							<h3 class="no-top-space">Create a strong,<br>memorable passphrase</h3>
+							<hr>
+							<form id="inputForm" autocomplete="off">
+								<div class="form-group">
+									<div class="float-form-group clearfix">
+										<label for="wordCountTextbox">How many words do you need?</label>
+										<select class="form-control" id="wordCountTextbox" tabindex="1" autocomplete="off" aria-label="Choose how many words you'd like to have in your passphrase." title="Choose how many words you'd like to have in your passphrase.">
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+											<option selected>6</option>
+											<option>7</option>
+											<option>8</option>
+											<option>9</option>
+											<option>10</option>
+											<option>11</option>
+											<option>12</option>
+											<option>13</option>
+											<option>14</option>
+											<option>15</option>
+											<option>16</option>
+											<option>17</option>
+											<option>18</option>
+											<option>19</option>
+											<option>20</option>
+										</select>
+									</div>
+									<p class="help-block">Six words or more is strong. <a href="doc/_site/help.html#how-many-words-should-i-use" target="_blank" class="text-nowrap">More info...</a></p>
+								</div>
+								<div class="form-group" id="diceRollInputSection">
+									<label for="diceRollTextbox">Enter <span id="diceRollsNeededText">30</span> dice rolls</label>
+									<p class="help-block no-top-space no-bottom-space pull-right"><span id="diceRollsRemainingText"></span></p>
+									<input type="password" class="form-control" id="diceRollTextbox" placeholder="Dice roll numbers" tabindex="4" autocomplete="off">
+									<p class="help-block">Use only 6-sided dice.</p>
+								</div>
+								<div class="text-right">
+									<button type="button" id="skipButton" class="btn btn-link requires-window-crypto" tabindex="6" autocomplete="off">Skip</button>
+									<button type="submit" id="continueButton" class="btn btn-red" tabindex="7" autocomplete="off" disabled="">Continue</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/randomness-generation.js"></script>
+		<script src="js/popup.js"></script>
+	</body>
+</html>

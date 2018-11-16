@@ -1,0 +1,15 @@
+# Jekyll files and folders #
+############################
+doc/_site
+doc/.sass-cache
+doc/.jekyll-metadata
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

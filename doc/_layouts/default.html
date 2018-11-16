@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>{{ site.title | escape }}{% if page.title %} - {{ page.title | escape }}{% endif %}</title>
+		<link rel="stylesheet" href="{{ site.baseurl }}../../fw/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{{ site.baseurl }}../../css/stylesheet.css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+					<div class="header-area">
+						<h1 class=""><img class="logo-icon" src="{{ site.baseurl }}../../img/icon-128.png"> DicePhrase</h1>
+						<p class="lead">A tool for making strong, memorable passphrases.</p>
+						<ul class="list-inline">
+							<li>Version 2.0.0</li>
+							<li><a href="https://github.com/dicephrase/dicephrase" target="_blank">GitHub Project</a></li>
+							<li>Made by <a href="https://www.lucaspetter.com/" target="_blank">Lucas Bleackley Petter</a></li>
+						</ul>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="no-top-space no-bottom-space">{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</h4>
+						</div>
+						<div class="list-group">
+							<div class="list-group-item" id="content">
+								{{ content | replace:'<table>','<table class="table table-condensed table-hover">' | replace:'<a href="http','<a target="_blank" href="http' }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
