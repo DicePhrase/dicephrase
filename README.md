@@ -4,6 +4,8 @@
 
 A tool for making strong, memorable passphrases.
 
+[Install in Firefox](https://addons.mozilla.org/en-US/firefox/addon/dicephrase/)
+
 [Install in Google Chrome](https://chrome.google.com/webstore/detail/dicephrase/hlcidibhelknhpnimiiogjclajfopdag)
 
 
