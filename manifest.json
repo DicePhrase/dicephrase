@@ -16,7 +16,7 @@
 		"16": "img/icon-16.png"
 	},
 	"minimum_chrome_version": "22",
-	"content_security_policy": "default-src 'none'; base-uri 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; form-action 'none'; sandbox allow-same-origin allow-scripts allow-popups allow-forms;",
+	"content_security_policy": "default-src 'none'; base-uri 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; form-action 'self'; sandbox allow-same-origin allow-scripts allow-popups allow-forms;",
 	"sandbox": {
 		"pages": [ "help.html", "doc/*" ],
 		"content_security_policy": "default-src 'none'; base-uri 'self'; style-src 'self'; img-src 'self'; font-src 'self'; form-action 'none'; sandbox allow-popups;"
