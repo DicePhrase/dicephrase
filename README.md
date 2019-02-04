@@ -38,7 +38,7 @@ For online accounts, having strong passphrases is good, but may not be enough pr
 DicePhrase has a variety of features to protect the confidentiality of your passphrases. Most importantly, passphrases aren't saved, they're automatically cleared 10 minutes after they've been created (you should memorize them or save them in a password manager application). DicePhrase is also free and open source software, so anyone can [inspect the code](https://github.com/dicephrase/dicephrase) to verify its safety. You can read more about DicePhrase's security design, as well as how to report bugs, in the [Help document](doc/help.md#dicephrases-security-design).
 
 ## Requirements
-DicePhrase requires Google Chrome, Chrome OS, or Chromium, version 22 or later. Make sure you're running the latest version of your browser in order to have the best security protection.
+DicePhrase requires Google Chrome, Chrome OS, or Chromium, or Mozilla Firefox. Make sure you're running the latest version of your browser in order to have the best security protection.
 
 At least one six-sided die is needed to create random passphrases. If you don't have any dice available, DicePhrase can generate pseudo-random numbers instead, although real dice are still recommended.
 
