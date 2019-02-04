@@ -20,7 +20,7 @@ var pluralMinutesText = document.getElementById("pluralMinutesText");
 var pluralSecondsText = document.getElementById("pluralSecondsText");
 
 // Add event listeners.
-window.addEventListener("load", function() { notifyLoaded(); }, false);
+chrome.runtime.onMessage.addListener(receiveDiceNumbers);
 window.addEventListener("beforeunload", function() { exitCleanup(); }, false);
 buttonToggleConceal.addEventListener("click", function() { toggleConcealPassphrase(); }, false);
 buttonCopy.addEventListener("click", function() { copyClipboard(); }, false);
@@ -29,30 +29,24 @@ checkboxSpaces.addEventListener("change", function() { createPassphrase(); }, fa
 checkboxSpecialCharacters.addEventListener("change", function() { createPassphrase(); }, false);
 checkboxNumerals.addEventListener("change", function() { createPassphrase(); }, false);
 
-function notifyLoaded() {
-	// Tell the event page that this page is loaded and ready to receive the dice numbers.
-	chrome.runtime.getBackgroundPage(function(eventPage) {
-		eventPage.sendDiceNumbers();
-	});
-}
-
-function loadDiceNumbers(numbers) {
-	// Load the dice numbers from the event page into the diceNumbers variable and create the passphrase.
-	diceNumbers = numbers;
+function receiveDiceNumbers(request, sender, sendResponse) {
+	// Load the dice numbers from the event page into the diceNumbers variable and start creating the passphrase.
+	diceNumbers = request.diceNumbers;
+	sendResponse({ data: "received" });
 	createPassphrase();
-	numbers = null;
+	request = null;
 }
 
 function createPassphrase() {
 	// Use the dice numbers to create a new passphrase.
 	if (diceNumbers) {
-		
+
 		// Get the state of the checkboxes.
 		var checkedCapitalize = checkboxCapitalize.checked;
 		var checkedSpaces = checkboxSpaces.checked;
 		var checkedSpecialCharacters = checkboxSpecialCharacters.checked;
 		var checkedNumerals = checkboxNumerals.checked;
-		
+
 		// Put the dice roll numbers into an array, 5 digits long per unit.
 		var diceRollArray = diceNumbers.match(/.{5}/g);
 		// Iterate through the number array to get the corresponding words and put the words into their own array.
@@ -61,14 +55,14 @@ function createPassphrase() {
 		for (i = 0; i < diceRollArray.length; i++) {
 			wordArray[i] = getWordFromNumber(diceRollArray[i]);
 		}
-		
+
 		// Iterate through the word array to add capitalization if the option checkbox is checked.
 		if (checkedCapitalize === true) {
 			for (i = 0; i < wordArray.length; i++) {
 				wordArray[i] = wordArray[i].charAt(0).toUpperCase() + wordArray[i].slice(1);
 			}
 		}
-		
+
 		// Iterate through the word array to add spaces if the option checkbox is checked.
 		if (checkedSpaces === true) {
 			for (i = 0; i < wordArray.length; i++) {
@@ -78,13 +72,13 @@ function createPassphrase() {
 				}
 			}
 		}
-		
+
 		// Combine the word array together to make the passphrase.
 		var passphrase = "";
 		for (i = 0; i < wordArray.length; i++) {
 			passphrase += wordArray[i];
 		}
-		
+
 		// Add a random special character if the option checkbox is checked.
 		if (checkedSpecialCharacters === true) {
 			// Add a space before the special character if the spaces option checkbox is checked.
@@ -174,7 +168,9 @@ countdown = setInterval(function(){
 	// If timer is done, stop and close the window for security purposes.
 	if (countdownMinutesText.innerHTML <= 0 && countdownSecondsText.innerHTML <= 0) {
 		clearInterval(countdown);
-		window.close();
+		chrome.tabs.getCurrent(function(tab) {
+			chrome.tabs.remove(tab.id, function() { });
+		});
 	}
 }, 1000);
 

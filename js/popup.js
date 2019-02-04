@@ -69,11 +69,15 @@ function skipRollingDice() {
 function displayPassphrase() {
 	// Re-run the calculation for remaining dice rolls.
 	if (calculateDiceRollsRemaining()) {
-		// Pass the dice numbers to the event page and make a new results tab.
-		chrome.runtime.getBackgroundPage(function(eventPage) {
-			eventPage.createNewTab(diceRollTextbox.value);
-			window.close();
-		});
+		// Pass the dice numbers to the event page.
+		var send = chrome.runtime.sendMessage({ diceNumbers: diceRollTextbox.value },
+			function(response) {
+				// Ensure the dice numbers were received on the event page before closing this popup.
+				if (response.data === "received") {
+					window.close();
+				}
+			}
+		);
 	}
 }
 
