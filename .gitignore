@@ -1,5 +1,6 @@
-# Jekyll files and folders #
-############################
+# Files and folders for packaging and Jekyll #
+##############################################
+pkg
 doc/_site
 doc/.sass-cache
 doc/.jekyll-metadata
