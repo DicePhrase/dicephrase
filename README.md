@@ -54,7 +54,7 @@ DicePhrase's documentation needs to be compiled using Jekyll. See the [build not
 By submitting code changes, you agree to licence your work under the [GNU General Public License](https://www.gnu.org/licenses/gpl.html), version 3 or later. By submitting documentation changes, you agree to licence your work under the [GNU Free Documentation License](https://www.gnu.org/licenses/fdl.html), version 1.3 or later.
 
 ## Licences
-DicePhrase is copyright © 2018 [Lucas Bleackley Petter](https://www.lucaspetter.com).
+DicePhrase is copyright © 2019 [Lucas Bleackley Petter](https://www.lucaspetter.com).
 
 DicePhrase is free software: you can redistribute it and/or modify it under the terms of the [GNU General Public License](https://www.gnu.org/licenses/gpl.html) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
