@@ -6,6 +6,7 @@ title: Help
 #### Contents
 - [What is DicePhrase?](#what-is-dicephrase)
 - [Why passphrases instead of passwords?](#why-passphrases-instead-of-passwords)
+- [How does it work?](#how-does-it-work)
 - [Why use dice?](#why-use-dice)
 - [When should I use passphrases?](#when-should-i-use-passphrases)
 - [How can I memorize a passphrase?](#how-can-i-memorize-a-passphrase)
@@ -15,24 +16,30 @@ title: Help
 - [Help improve DicePhrase](#help-improve-dicephrase)
 - [DicePhrase's security design](#dicephrases-security-design)
 - [Reporting security vulnerabilities](#reporting-security-vulnerabilities)
-- [Support](#support)
+- [Get support](#get-support)
 - [Copyright and licences](#copyright-and-licences)
 
 ---
 
 ### What is DicePhrase?
 
-DicePhrase is a browser extension that helps you easily create strong, memorable passphrases, such as `FragrantRenewedAnyoneBakedPossum` or `BazookaClangUnstuckTransferQuoteJokingly`, by rolling six-sided dice to randomly select from a set of 7776 possible words. This system is more unpredictable than picking words on your own or trusting computer-generated randomness.
+DicePhrase is a browser extension that helps you easily create strong, memorable passphrases, such as `FragrantRenewedAnyoneBakedPossum` or `BazookaClangUnstuckTransferQuoteJokingly`, by rolling six-sided dice to randomly select from a set of 7776 possible words. This system creates passphrases that are more unguessable than if you were to pick words on your own or trust the computer to generate words automatically.
 
-It's based on best practice techniques for creating passphrases by the [Electronic Frontier Foundation](https://www.eff.org/dice) and security technologist [Micah Lee](https://firstlook.org/theintercept/2015/03/26/passphrases-can-memorize-attackers-cant-guess/).
+It's based on best practice strategies for creating passphrases by the [Electronic Frontier Foundation](https://www.eff.org/dice), security technologist [Micah Lee](https://firstlook.org/theintercept/2015/03/26/passphrases-can-memorize-attackers-cant-guess/), and the [Diceware](http://world.std.com/~reinhold/diceware.html) project.
 
 ---
 
 ### Why passphrases instead of passwords?
 
-Long, random passphrases are more secure because they're more difficult for an attacker to guess than simple passwords. While `Batman1989` is easily guessed and `&1KJl6a8y$g*01W}i21!MZ` is too hard to remember, random passphrases like `DonutConfinedCurveHurricaneJuggleWidget` are strong and memorable.
+Long, random passphrases are more secure because they're more difficult for an attacker to guess than simple passwords. While a password like `Batman1989` is easily guessed and `&1KJl6a8y$g*01W}i21!MZ` is too hard to remember, random passphrases like `DonutConfinedCurveHurricaneJuggleWidget` are strong and memorable.
 
 Passphrases don't need to be personal to be memorable. Personal things like birthdays, addresses, anniversaries, names, lyrics, books, movies, etc. are not very secret; anyone can find out your address, pet's name, or favourite songs. Picking words randomly ensures your passphrase is unbiased and unpredictable.
+
+---
+
+### How does it work?
+
+You do five dice rolls to randomly select each word for your passphrase, so if you need a 6-word passphrase, that's 30 dice rolls. Input the numbers into DicePhrase, which will then use them to look up corresponding words in a table of 7776 possible words to generate your new passphrase. With each additional word, the chances that anyone could ever guess your passphrase become exponentially smaller.
 
 ---
 
@@ -91,11 +98,11 @@ If unsure about how many words to use, consider the value of what you're trying 
 
 ### Are numerals and special characters necessary?
 
-If a passphrase is long enough, such as 6 random words or more, then it may not need numbers or special characters (eg. 0123456789 or ~!@#$%^&*). A long passphrase composed only of words made from alphabetical letters may be strong enough on its own.
+If a passphrase is long enough, such as 6 random words or more, then it may not need numbers or special characters (eg. `0123456789` or `~!@#$%^&*)`. A long passphrase composed only of words made from alphabetical letters may be strong enough on its own.
 
 Numbers and special characters can make your passphrase less memorable. For example, consider `ChattingImprintPlayroomIllusionKoala` versus `ChattingImprintPlayroom{9167`. Both offer roughly the same level of security, but the first one is easier to memorize.
 
-Sometimes, when using spaces to separate the words, as in `Chatting Imprint Playroom Illusion Koala`, it's still easy to memorize and the spaces may qualify as special characters, depending on the website or service's requirements.
+Sometimes, when using spaces to separate the words, as in `Chatting Imprint Playroom Illusion Koala`, it's still easy to memorize and the spaces may qualify as special characters, depending on the service's requirements.
 
 ---
 
@@ -169,7 +176,7 @@ If you find a security vulnerability, please report it by sending detailed infor
 
 ---
 
-### Support
+### Get support
 
 If you need assistance with DicePhrase and your issue wasn't resolved by reading this help document, you can get in touch [here](https://www.lucaspetter.com/contact/) or on [Twitter](https://twitter.com/lucasbpetter).
 

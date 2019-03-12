@@ -1,6 +1,6 @@
 # Building DicePhrase
 
-The Firefox extension needs to be packaged with Web-ext. Also, DicePhrase's Help page in the `doc` directory needs to be built using Jekyll.
+ DicePhrase's Help page in the `doc` directory needs to be built using Jekyll. Also, the Firefox extension needs to be packaged with Web-ext.
 
 1. Install [Jekyll](https://jekyllrb.com/):
     ```
@@ -17,6 +17,6 @@ The Firefox extension needs to be packaged with Web-ext. Also, DicePhrase's Help
     ```
 4. Run the build script:
     ```
-    sh ./build.sh
+    ./build.sh
     ```
 5. Packaged files will be located in the 'pkg' directory.
