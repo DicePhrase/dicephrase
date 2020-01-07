@@ -1,9 +1,12 @@
 # Files and folders for packaging and Jekyll #
 ##############################################
-pkg
 doc/_site
 doc/.sass-cache
 doc/.jekyll-metadata
+doc/.jekyll-cache
+node_modules
+package-lock.json
+pkg
 
 # OS generated files #
 ######################
