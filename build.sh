@@ -30,6 +30,8 @@ echo "Editing manifest.json for Firefox compatibility..."
 # Remove "offline_enabled" key, Firefox doesn't support it.
 # https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/offline_enabled
 sed -i "/\"offline_enabled\"/d" pkg/firefox/manifest.json
+# Remove "sandbox" property from "content_security_policy" key, Mozilla requested its removal during review on Dec 23, 2019.
+sed -i "s/ sandbox allow-same-origin allow-scripts allow-popups allow-forms\;//" pkg/firefox/manifest.json
 # Remove "sandbox" key, Firefox doesn't support it.
 # https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json
 sed -i '\%"sandbox"%,\%},%d' pkg/firefox/manifest.json
