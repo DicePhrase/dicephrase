@@ -22,8 +22,8 @@ fi
 echo "Preparing package files..."
 rm -rf pkg
 mkdir -p pkg/chrome pkg/firefox
-rsync -r --exclude "pkg" --exclude ".git*" ./ pkg/chrome/
-rsync -r --exclude "pkg" --exclude ".git*" ./ pkg/firefox/
+rsync -r --exclude "pkg" --exclude ".git*" --exclude "package-lock.json" --exclude "node_modules" ./ pkg/chrome/
+rsync -r --exclude "pkg" --exclude ".git*" --exclude "package-lock.json" --exclude "node_modules" ./ pkg/firefox/
 
 # Edit manifest.json for Firefox compatibility.
 echo "Editing manifest.json for Firefox compatibility..."
