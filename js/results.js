@@ -34,6 +34,8 @@ function receiveDiceNumbers(request, sender, sendResponse) {
 	diceNumbers = request.diceNumbers;
 	sendResponse({ data: "received" });
 	createPassphrase();
+	// Remove the runtime message passing event listener, so multiple DicePhrase results windows can be opened with different passphrases simultaneously, without overwriting each other's passphrases whenever message passing events occur.
+	chrome.runtime.onMessage.removeListener(receiveDiceNumbers);
 	request = null;
 }
 
