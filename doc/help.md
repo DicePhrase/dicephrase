@@ -184,7 +184,7 @@ If you need assistance with DicePhrase and your issue wasn't resolved by reading
 
 ### Copyright and licences
 
-DicePhrase is copyright © 2020 [Lucas Bleackley Petter](https://www.lucaspetter.com/).
+DicePhrase is copyright © 2024 [Lucas Bleackley Petter](https://www.lucaspetter.com/).
 
 This program is free software: you can redistribute it and/or modify it under the terms of the [GNU General Public License](https://www.gnu.org/licenses/gpl.html) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
