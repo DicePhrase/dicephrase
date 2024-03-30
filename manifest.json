@@ -1,11 +1,11 @@
 {
-	"manifest_version": 2,
+	"manifest_version": 3,
 	"name": "DicePhrase",
 	"version": "2.1.2",
 	"description": "A tool for making strong, memorable passphrases.",
 	"author": "Lucas Bleackley Petter",
-	"homepage_url": "https://www.lucaspetter.com/software/dicephrase/",
-	"offline_enabled": true,
+	"homepage_url": "https://www.lucaspetter.com/software/dicephrase/",%chrome-only%
+	"offline_enabled": true,%end-chrome-only%
 	"icons": {
 		"1024": "img/icon-1024.png",
 		"512": "img/icon-512.png",
@@ -14,15 +14,17 @@
 		"64": "img/icon-64.png",
 		"32": "img/icon-32.png",
 		"16": "img/icon-16.png"
-	},
-	"minimum_chrome_version": "22",
-	"content_security_policy": "default-src 'none'; base-uri 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; form-action 'self'; sandbox allow-same-origin allow-scripts allow-popups allow-forms;",
+	},%chrome-only%
+	"minimum_chrome_version": "109",%end-chrome-only%
+	"content_security_policy": {
+		"extension_pages": "default-src 'none'; base-uri 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; form-action 'self';%chrome-only% sandbox allow-same-origin allow-scripts allow-popups allow-forms;%end-chrome-only%"%chrome-only%,
+		"sandbox": "default-src 'none'; base-uri 'self'; style-src 'self'; img-src 'self'; font-src 'self'; form-action 'none'; sandbox allow-popups;"%end-chrome-only%
+	},%chrome-only%
 	"sandbox": {
-		"pages": [ "help.html", "doc/*" ],
-		"content_security_policy": "default-src 'none'; base-uri 'self'; style-src 'self'; img-src 'self'; font-src 'self'; form-action 'none'; sandbox allow-popups;"
-	},
-	"incognito": "split",
-	"browser_action": {
+		"pages": [ "help.html", "doc/*" ]
+	},%end-chrome-only%
+	"incognito": %chrome-only%"split"%end-chrome-only%%firefox-only%"spanning"%end-firefox-only%,
+	"action": {
 		"default_popup": "popup.html",
 		"default_icon": {
 			"1024": "img/icon-1024.png",
@@ -34,12 +36,13 @@
 			"16": "img/icon-16.png"
 		}
 	},
-	"background": {
-		"page": "event-page.html",
-		"persistent": false
+	"background": {%chrome-only%
+		"service_worker": "js/service-worker.js"%firefox-only%,%end-chrome-only%
+		"page": "event-page.html"%end-firefox-only%
 	},
 	"permissions": [
-		"clipboardWrite",
+		"clipboardWrite",%chrome-only%
+		"offscreen",%end-chrome-only%
 		"alarms"
-  ]
+	]
 }

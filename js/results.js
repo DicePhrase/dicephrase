@@ -30,7 +30,7 @@ checkboxSpecialCharacters.addEventListener("change", function() { createPassphra
 checkboxNumerals.addEventListener("change", function() { createPassphrase(); }, false);
 
 function receiveDiceNumbers(request, sender, sendResponse) {
-	// Load the dice numbers from the event page into the diceNumbers variable and start creating the passphrase.
+	// Load the dice numbers from the service worker or event page into the diceNumbers variable and start creating the passphrase.
 	diceNumbers = request.diceNumbers;
 	sendResponse({ data: "received" });
 	createPassphrase();

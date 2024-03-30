@@ -2,10 +2,8 @@
 
 // Define variables.
 var diceNumbers;
-var clipboardClearTextbox = document.getElementById("clipboardClearTextbox");
 
 // Add event listeners.
-window.addEventListener("beforeunload", function() { exitCleanup(); }, false);
 chrome.runtime.onMessage.addListener(receiveDiceNumbers);
 chrome.alarms.onAlarm.addListener(function(alarm) { clearClipboard(); });
 
@@ -32,24 +30,19 @@ function sendDiceNumbers() {
 				if (response.data === "received") {
 					// Clear the clipboard after a time limit for security purposes.
 					chrome.alarms.create("clearClipboard", { delayInMinutes: 10.0 });
-					// Reload this event page, clearing the cache.
+					// Clear out dice numbers for security.
 					diceNumbers = null;
-					location.reload(true);
 				}
 			}
 		)
 	}
 }
 
-function clearClipboard() {
-	// Clear the clipboard.
-	clipboardClearTextbox.focus();
-	clipboardClearTextbox.select();
-	document.execCommand('copy');
-	clipboardClearTextbox.blur();
-}
-
-function exitCleanup() {
-	// Clear out sensitive data when exiting the page.
-	diceNumbers = null;
+async function clearClipboard() {
+	// Open offscreen page to clear the clipboard.
+  await chrome.offscreen.createDocument({
+    url: chrome.runtime.getURL("offscreen-copy.html"),
+    reasons: ["CLIPBOARD"],
+    justification: "Required by Chrome to copy text."
+  });
 }

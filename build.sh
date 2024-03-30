@@ -22,27 +22,40 @@ fi
 echo "Preparing package files..."
 rm -rf pkg
 mkdir -p pkg/chrome pkg/firefox
-rsync -r --exclude "pkg" --exclude ".git*" --exclude "package-lock.json" --exclude "node_modules" ./ pkg/chrome/
-rsync -r --exclude "pkg" --exclude ".git*" --exclude "package-lock.json" --exclude "node_modules" ./ pkg/firefox/
+rsync -r --exclude "pkg" --exclude ".git*" --exclude "package-lock.json" --exclude "node_modules" --exclude "event-page.html" --exclude "js/event-page.js" ./ pkg/chrome/
+rsync -r --exclude "pkg" --exclude ".git*" --exclude "package-lock.json" --exclude "node_modules" --exclude "offscreen-copy.html" --exclude "js/offscreen-copy.js" --exclude "js/service-worker.js" ./ pkg/firefox/
 
-# Edit manifest.json for Firefox compatibility.
+# Edit manifest.json for Chrome compatibility, including:
+# - Remove "page" property from "background" object, Chrome doesn't support it, and only supports "service_worker".
+#   https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/basics
+echo "Editing manifest.json for Chrome compatibility..."
+# Remove %chrome-only% tags.
+sed -i 's/\(%chrome-only%\|%end-chrome-only%\)//g' pkg/chrome/manifest.json
+# Remove data between %firefox-only% tags.
+sed -zi 's/%firefox-only%[^%]*%end-firefox-only%//g' pkg/chrome/manifest.json
+echo "Done editing manifest.json for Chrome compatibility."
+
+# Edit manifest.json for Firefox compatibility, including:
+# - Remove "offline_enabled" property, Firefox doesn't support it.
+#   https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/offline_enabled
+# - Remove "minimum_chrome_version" property, which isn't relevant to Firefox.
+# - Remove "sandbox" values from "extension_pages" property. Mozilla requested its removal during review on Dec 23, 2019.
+# - Remove "sandbox" property of "content_security_policy" object, Firefox doesn't support it.
+#   https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json
+# - Remove "sandbox" object, Firefox doesn't support it.
+#   https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json
+# - Change "incognito" property value, Firefox only supports "spanning" value.
+#   https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/incognito
+# - Remove "service_worker" property from "background" object, Firefox doesn't support it, and only supports "page".
+#   https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json
+# - Remove "offscreen" permissions property, Firefox doesn't support it.
+#   https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json
 echo "Editing manifest.json for Firefox compatibility..."
-# Remove "offline_enabled" key, Firefox doesn't support it.
-# https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/offline_enabled
-sed -i "/\"offline_enabled\"/d" pkg/firefox/manifest.json
-# Remove "sandbox" property from "content_security_policy" key, Mozilla requested its removal during review on Dec 23, 2019.
-sed -i "s/ sandbox allow-same-origin allow-scripts allow-popups allow-forms\;//" pkg/firefox/manifest.json
-# Remove "sandbox" key, Firefox doesn't support it.
-# https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json
-sed -i '\%"sandbox"%,\%},%d' pkg/firefox/manifest.json
-# Change "incognito" key, Firefox only supports "spanning" value.
-# https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/incognito
-sed -i "s/\"incognito\": \"split\"/\"incognito\": \"spanning\"/" pkg/firefox/manifest.json
-# Remove "persistent" property from "background" key, Firefox doesn't support it.
-# https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/background
-sed -i "s/\"page\": \"event-page.html\",/\"page\": \"event-page.html\"/" pkg/firefox/manifest.json
-sed -i "/\"persistent\"/d" pkg/firefox/manifest.json
-echo "Done editing manifest.json."
+# Remove %firefox-only% tags.
+sed -i 's/\(%firefox-only%\|%end-firefox-only%\)//g' pkg/firefox/manifest.json
+# Remove data between %chrome-only% tags.
+sed -zi 's/%chrome-only%[^%]*%end-chrome-only%//g' pkg/firefox/manifest.json
+echo "Done editing manifest.json for Firefox compatibility."
 
 # Package Chrome extension.
 echo "Packaging Chrome extension..."
