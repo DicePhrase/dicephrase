@@ -4,7 +4,13 @@
 	"version": "2.2.0",
 	"description": "A tool for making strong, memorable passphrases.",
 	"author": "Lucas Bleackley Petter",
-	"homepage_url": "https://www.lucaspetter.com/software/dicephrase/",%chrome-only%
+	"homepage_url": "https://www.lucaspetter.com/software/dicephrase/",%firefox-only%
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "{17723d9f-7ac1-4513-a059-9a237b4f9f42}",
+			"strict_min_version": "109.0"
+		}
+	},%end-firefox-only%%chrome-only%
 	"offline_enabled": true,%end-chrome-only%
 	"icons": {
 		"1024": "img/icon-1024.png",
